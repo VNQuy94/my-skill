@@ -1,0 +1,69 @@
+{
+  "skill_name": "research",
+  "evals": [
+    {
+      "id": 1,
+      "name": "reconciliation-cron-interval",
+      "prompt": "Hệ thống của mình có job cron đối soát (reconciliation) giữa bảng orders trong Postgres và trạng thái giao dịch bên cổng thanh toán (VNPay, MoMo). Khoảng 50k đơn/ngày, có webhook nhưng thỉnh thoảng bị miss. Job nên chạy mấy phút một lần? Cho mình con số cụ thể.",
+      "expected_output": "Mode B. Decomposes decision factors (acceptable inconsistency window, provider query API limits, volume, webhook miss rate), searches in English with canonical terms plus provider docs, gives a conditional concrete starting interval and a way to measure/tune, cites sources.",
+      "files": [],
+      "assertions": [
+        "Does not present a single universal number without stating the conditions it depends on",
+        "Gives a concrete starting interval (or tiered schedule) tied to stated conditions",
+        "Names at least 3 decision factors (e.g. acceptable delay, provider API rate limits, order volume, webhook miss rate, query cost)",
+        "At least one search query is in English using a canonical technical term (e.g. reconciliation, polling, webhook retry)",
+        "At least one search query targets failure modes, limits, or counter-evidence",
+        "References VNPay or MoMo transaction query/status API documentation or limits, with a link",
+        "Final answer body (not only an end list) contains at least 2 source links placed next to the claims they support, to pages listed as opened",
+        "Every specific number or quantitative claim in the answer is either linked to a source or explicitly labeled as an estimate/inference/assumption"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pgvector-vs-qdrant-current",
+      "prompt": "Mình cần chọn vector database cho RAG nội bộ: khoảng 2 triệu chunk, embedding 1024 chiều, team 3 dev, self-host trên một VPS 16GB RAM, đã dùng Postgres sẵn. Nên dùng pgvector hay Qdrant? Cần thông tin mới nhất.",
+      "expected_output": "Modes C+E. Criteria from user context (RAM budget, ops burden, existing Postgres), memory estimate for 2M x 1024 dims, current versions/dates from primary sources for both, limitations/counter-evidence for both, conditional recommendation, inline citations.",
+      "files": [],
+      "assertions": [
+        "Estimates the raw vector memory footprint (about 8 GB for 2M x 1024 float32) and relates it to the 16 GB RAM budget",
+        "Cites official docs, README, changelog or release notes for pgvector",
+        "Cites official docs, changelog or release notes for Qdrant",
+        "States a current version number or release date for at least one of the two options",
+        "Searches limitations, failure modes or counter-evidence for both options",
+        "No search query uses a stale year (2023, 2024 or 2025) as a freshness qualifier",
+        "Recommendation is conditional on the user's constraints rather than unconditional",
+        "Every specific number or quantitative claim in the answer is either linked to a source or explicitly labeled as an estimate/inference/assumption",
+        "Every URL cited in the answer appears in the list of pages actually opened, or is labeled as seen only in search results"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "advisory-lock-narrow",
+      "prompt": "Giải thích ngắn gọn PostgreSQL advisory lock, và khác nhau giữa pg_advisory_lock với pg_try_advisory_lock là gì?",
+      "expected_output": "Mode A. Direct, correct, concise explanation; at most light verification against the official PostgreSQL docs; no broad research.",
+      "files": [],
+      "assertions": [
+        "Correctly states that pg_advisory_lock waits/blocks until the lock is available while pg_try_advisory_lock returns immediately with a boolean",
+        "Mentions session-level vs transaction-level (xact) advisory locks",
+        "Uses at most 3 web searches",
+        "Final answer is under 450 words",
+        "Answer is written in Vietnamese"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "hanoi-minimum-wage-current",
+      "prompt": "Lương tối thiểu vùng áp dụng cho nội thành Hà Nội hiện nay là bao nhiêu một tháng, theo văn bản nào và có hiệu lực từ ngày nào?",
+      "expected_output": "Mode E, Vietnamese-local. Queries in Vietnamese, anchored on today's date, finds the latest decree, states region (vùng I), monthly amount, decree number, effective date, cites an official government source.",
+      "files": [],
+      "assertions": [
+        "Most search queries are written in Vietnamese",
+        "States that inner-city Hanoi belongs to region I (vùng I)",
+        "States a monthly amount, a decree number and an effective date",
+        "Cites at least one official government source (e.g. chinhphu.vn, vanban.chinhphu.vn, or a *.gov.vn domain)",
+        "Explicitly checks whether a newer decree has replaced the one cited (current-state verification)",
+        "Every specific number or quantitative claim in the answer is either linked to a source or explicitly labeled as an estimate/inference/assumption"
+      ]
+    }
+  ]
+}
