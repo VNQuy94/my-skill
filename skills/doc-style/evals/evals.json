@@ -1,0 +1,50 @@
+{
+  "skill_name": "doc-style",
+  "evals": [
+    {
+      "id": 1,
+      "name": "survey-report-pdf",
+      "prompt": "Tạo giúp mình file PDF báo cáo kết quả khảo sát mức độ hài lòng của nhân viên năm 2026 gửi ban giám đốc. Số liệu: 412 người trả lời (tỉ lệ phản hồi 78%). Điểm trung bình (thang 5) năm 2026 / 2025: Lương thưởng 3,1 / 2,9; Môi trường làm việc 4,2 / 4,0; Quản lý trực tiếp 3,6 / 3,7; Đào tạo phát triển 3,3 / 3,0; Cân bằng công việc 3,8 / 3,5. Ba vấn đề nổi bật: lương chưa theo kịp thị trường, lộ trình thăng tiến không rõ, họp quá nhiều. Bốn đề xuất: rà soát khung lương quý I, công bố lộ trình nghề nghiệp, giới hạn họp nội bộ 30 phút, khảo sát nhanh mỗi quý.",
+      "expected_output": "A multi-section PDF report: summary up front, a comparison table (2025 vs 2026, numbers right-aligned), probably a chart, issues and recommendations as lists, one consistent color system, Vietnamese renders correctly.",
+      "files": [],
+      "assertions": [
+        "PDF fonts are all embedded and no missing-glyph characters appear",
+        "At most 4 distinct text colors are used in the whole PDF",
+        "Contains a table comparing 2025 and 2026 scores",
+        "Contains a summary or key conclusions near the top of page 1",
+        "Issues and recommendations are presented as lists, not as one paragraph",
+        "All tables share the same visual style (same header fill/rules)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "leave-guide-docx",
+      "prompt": "Soạn file Word hướng dẫn quy trình xin nghỉ phép cho nhân viên mới. Nội dung: các loại nghỉ — phép năm 12 ngày/năm (cộng 1 ngày mỗi 5 năm thâm niên), nghỉ ốm hưởng BHXH (cần giấy của cơ sở y tế), nghỉ việc riêng có lương (kết hôn 3 ngày, con kết hôn 1 ngày, bố/mẹ/vợ/chồng/con mất 3 ngày), nghỉ không lương tối đa 30 ngày/năm. Quy trình: tạo đơn trên phần mềm HR, quản lý trực tiếp duyệt trong 2 ngày làm việc, HR xác nhận, nhận email thông báo, bàn giao công việc trước khi nghỉ. Lưu ý: nộp đơn trước ít nhất 3 ngày làm việc (trừ nghỉ ốm), phép năm chưa dùng hết được chuyển sang tối đa đến hết quý I năm sau. Liên hệ: phòng Nhân sự, máy lẻ 204, hr@congty.vn.",
+      "expected_output": "A DOCX guide with headings, a table of leave types (type, days, conditions), a numbered procedure, a warning-style callout for deadlines, contact info; named styles, no direct formatting, no blank spacing paragraphs.",
+      "files": [],
+      "assertions": [
+        "Leave types are presented in a table",
+        "The procedure is a numbered list",
+        "Headings use real heading styles (no bold-Normal fake headings)",
+        "No more than 2 runs carry direct color/font/size formatting",
+        "No blank paragraphs used for spacing (BlockGap-style spacer paragraphs excepted)",
+        "All data tables share the same header look"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "school-notice-nd30-pdf",
+      "prompt": "Soạn giúp mình thông báo (xuất PDF) theo đúng thể thức văn bản hành chính Nghị định 30 của Trường THPT Nguyễn Trãi (thuộc Sở Giáo dục và Đào tạo tỉnh Bắc Ninh) gửi phụ huynh học sinh về lịch họp phụ huynh học kỳ I năm học 2026-2027: họp lúc 8 giờ sáng Chủ nhật 25/10/2026 tại các phòng học của lớp; nội dung: báo cáo kết quả giữa kỳ, kế hoạch học kỳ II, thu ý kiến phụ huynh. Số văn bản 87/TB-THPTNT, ký Hiệu trưởng Lê Văn Minh, ngày 12/10/2026.",
+      "expected_output": "A PDF administrative notice: two-column header (Sở GD&ĐT / Trường; Quốc hiệu, Tiêu ngữ with underline), số ký hiệu, địa danh ngày tháng in italic, THÔNG BÁO + trích yếu centred bold, justified 13-14pt Times-like body with first-line indent, signature block and Nơi nhận; black only; no page number on page 1.",
+      "files": [],
+      "assertions": [
+        "Only black (or near-black) text is used",
+        "Header has Quốc hiệu and Tiêu ngữ on the right and the school name on the left",
+        "Body text size is 13-14pt in a Times New Roman-compatible serif font",
+        "Place and date line is italic",
+        "Has a signature block with Hiệu trưởng and a 'Nơi nhận' section",
+        "PDF fonts are embedded and Vietnamese renders without missing glyphs"
+      ]
+    }
+  ]
+}

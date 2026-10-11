@@ -1,0 +1,113 @@
+{
+  "name": "nd30",
+  "description": "Vietnamese administrative document layout per Appendix I of Decree 30/2020/ND-CP: Times New Roman, black only, size 13-14, justified, 1-1.27 cm first-line indent, >= 6pt between paragraphs, single to 1.5 line spacing. See references/nd30.md.",
+  "lang": "vi",
+  "labels": {
+    "table": "Bảng",
+    "figure": "Hình",
+    "note": "Ghi chú",
+    "tip": "Ghi chú",
+    "warning": "Lưu ý",
+    "danger": "Lưu ý",
+    "success": "Ghi chú"
+  },
+  "page": {
+    "paper": "a4",
+    "margin_mm": {
+      "top": 20,
+      "bottom": 20,
+      "left": 30,
+      "right": 15
+    },
+    "page_numbers": "top-center",
+    "number_first_page": false
+  },
+  "fonts": {
+    "body": [
+      "Times New Roman",
+      "Liberation Serif",
+      "Noto Serif"
+    ],
+    "heading": [
+      "Times New Roman",
+      "Liberation Serif",
+      "Noto Serif"
+    ],
+    "mono": [
+      "Liberation Mono",
+      "DejaVu Sans Mono"
+    ]
+  },
+  "sizes_pt": {
+    "body": 14,
+    "small": 12,
+    "h1": 14,
+    "h2": 14,
+    "h3": 14,
+    "title": 14,
+    "table": 13,
+    "code": 12,
+    "org": 12.5,
+    "motto": 13.5,
+    "recipient_label": 12,
+    "recipient": 11
+  },
+  "spacing": {
+    "line": 1.2,
+    "paragraph_after_pt": 6,
+    "first_line_indent_mm": 12.7,
+    "justify": true,
+    "heading_before_pt": {
+      "h1": 12,
+      "h2": 6,
+      "h3": 6
+    },
+    "heading_after_pt": {
+      "h1": 6,
+      "h2": 6,
+      "h3": 6
+    },
+    "block_gap_pt": 6
+  },
+  "headings": {
+    "bold": true,
+    "numbered": false,
+    "max_level": 3
+  },
+  "colors": {
+    "text": "#000000",
+    "text_muted": "#000000",
+    "heading": "#000000",
+    "accent": "#000000",
+    "accent_soft": "#FFFFFF",
+    "border": "#000000",
+    "surface": "#FFFFFF",
+    "link": "#000000",
+    "success": "#000000",
+    "success_soft": "#FFFFFF",
+    "warning": "#000000",
+    "warning_soft": "#FFFFFF",
+    "danger": "#000000",
+    "danger_soft": "#FFFFFF"
+  },
+  "chart_palette": [
+    "#000000",
+    "#555555",
+    "#999999",
+    "#CCCCCC"
+  ],
+  "table": {
+    "header_fill": "none",
+    "header_rule": "text",
+    "row_rule": "text",
+    "zebra": false,
+    "cell_pad_pt": 3
+  },
+  "callout": {
+    "bar_width_pt": 0,
+    "pad_pt": 6
+  },
+  "lint": {
+    "wall_of_text": false
+  }
+}

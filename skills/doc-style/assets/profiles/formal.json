@@ -1,0 +1,110 @@
+{
+  "name": "formal",
+  "description": "Serif print style, restrained color. For printed reports, academic or legal-style documents that are not government administrative documents.",
+  "lang": "vi",
+  "labels": {
+    "table": "Bảng",
+    "figure": "Hình",
+    "note": "Ghi chú",
+    "tip": "Gợi ý",
+    "warning": "Lưu ý",
+    "danger": "Cảnh báo",
+    "success": "Kết quả"
+  },
+  "page": {
+    "paper": "a4",
+    "margin_mm": {
+      "top": 25,
+      "bottom": 25,
+      "left": 30,
+      "right": 20
+    },
+    "page_numbers": "bottom-center",
+    "number_first_page": false
+  },
+  "fonts": {
+    "body": [
+      "Noto Serif",
+      "Liberation Serif",
+      "DejaVu Serif"
+    ],
+    "heading": [
+      "Noto Serif",
+      "Liberation Serif",
+      "DejaVu Serif"
+    ],
+    "mono": [
+      "Noto Sans Mono",
+      "DejaVu Sans Mono"
+    ]
+  },
+  "sizes_pt": {
+    "body": 12,
+    "small": 10,
+    "h1": 18,
+    "h2": 14,
+    "h3": 12,
+    "title": 22,
+    "table": 11,
+    "code": 10
+  },
+  "spacing": {
+    "line": 1.35,
+    "paragraph_after_pt": 0,
+    "first_line_indent_mm": 10,
+    "justify": true,
+    "heading_before_pt": {
+      "h1": 18,
+      "h2": 12,
+      "h3": 10
+    },
+    "heading_after_pt": {
+      "h1": 8,
+      "h2": 6,
+      "h3": 4
+    },
+    "block_gap_pt": 10
+  },
+  "headings": {
+    "bold": true,
+    "numbered": true,
+    "max_level": 3
+  },
+  "colors": {
+    "text": "#1A1A1A",
+    "text_muted": "#555555",
+    "heading": "#7A1F1F",
+    "accent": "#7A1F1F",
+    "accent_soft": "#F6EFEF",
+    "border": "#BFBFBF",
+    "surface": "#FAFAF8",
+    "link": "#7A1F1F",
+    "success": "#2F6B3A",
+    "success_soft": "#EEF5EF",
+    "warning": "#8A5A00",
+    "warning_soft": "#FBF4E6",
+    "danger": "#9B1C1C",
+    "danger_soft": "#FBEFEF"
+  },
+  "chart_palette": [
+    "#7A1F1F",
+    "#B0605E",
+    "#D9A9A7",
+    "#8C8C8C",
+    "#4D4D4D"
+  ],
+  "table": {
+    "header_fill": "none",
+    "header_rule": "text",
+    "row_rule": "none",
+    "zebra": false,
+    "cell_pad_pt": 4
+  },
+  "callout": {
+    "bar_width_pt": 2,
+    "pad_pt": 8
+  },
+  "lint": {
+    "wall_of_text": true
+  }
+}
