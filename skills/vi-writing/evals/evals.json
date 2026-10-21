@@ -1,0 +1,54 @@
+{
+  "skill_name": "vi-writing",
+  "log": "none",
+  "rubric": [
+    "naturalness",
+    "correctness",
+    "consistency",
+    "fidelity"
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "name": "release-notes-translation",
+      "prompt": "Dịch giúp mình phần release notes này sang tiếng Việt để gửi khách hàng (người dùng phổ thông, không phải dev):\n\nVersion 4.2 — What's New\n- Faster Sync: Syncing large folders is now up to 3.5x faster.\n- Offline Mode: You can now view and edit your notes without an internet connection. Changes are synced automatically when you're back online.\n- Improved Search: Search results now include text inside attached PDFs.\n- Bug fixes: Fixed an issue where the app failed to save images larger than 25.5 MB. Fixed a crash that occurred when exporting more than 10,000 notes.\nWe hope you enjoy these updates!",
+      "expected_output": "Natural Vietnamese for general users: product feature names handled consistently, decimal comma (3,5; 25,5 MB), thousands with '.', sentence-case headings, error phrased as 'không lưu được', no translationese.",
+      "assertions": [
+        "Uses a decimal comma for 3.5 and 25.5 (3,5 and 25,5) and '.' or a space (not a comma) for 10,000",
+        "The failed-save bug is phrased naturally (e.g. 'không lưu được ảnh'), not as 'lưu … thất bại'",
+        "Headings/labels are in sentence case, not Title Case",
+        "No 'thực hiện việc', 'được … bởi', or 'một cách + adjective' constructions",
+        "All five changes from the source are present with the same numbers"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "proofread-internal-email",
+      "prompt": "Soát lỗi chính tả, định dạng và văn phong giúp mình email này rồi đưa lại bản đã sửa (giữ giọng văn của mình, đừng viết lại toàn bộ):\n\nChào Cả Nhóm,\n\nTuần vừa rồi chúng ta đã thực hiện việc kiểm tra lại toàn bộ quy trình đặt hàng , kết quả cho thấy tỉ lệ đơn bị lỗi giảm còn 2.3 %, trong khi đó tỷ lệ hoàn tiền vẫn ở mức 4,1%. Báo cáo chi tiết đã được hoàn thành bởi bạn Minh và sẽ được gửi vào Thứ Sáu tuần này.\nCác bạn lưu ý: hạn chót nộp số liệu quý là ngày 15/10, doanh thu cần báo cáo theo đơn vị đồng (VD: 1,250,000 đ), và mỗi bộ phận chỉ gửi một file duy nhất.\nNgoài ra, việc phối hợp giữa kho, kế toán, và chăm sóc khách hàng cần được thực hiện một cách chặt chẽ hơn để tránh hoà lẫn trách nhiệm như vừa rồi, sức khỏe của cả nhóm cũng quan trọng nên mọi người nhớ nghỉ ngơi nhé.\n\nThân,\nLan",
+      "expected_output": "Minimal edits that keep the author's voice: one i/y convention (tỉ/tỷ unified), one tone convention (hoà/khỏe unified), decimal comma, thousands '.', no space before comma or %, no comma before 'và', 'thứ Sáu', active voice where natural; short summary of changes.",
+      "assertions": [
+        "tỉ lệ / tỷ lệ are unified to one form",
+        "hoà / khỏe tone placement is unified to one convention",
+        "2.3 % becomes 2,3% (decimal comma, no space before %)",
+        "1,250,000 becomes 1.250.000 (or 1 250 000)",
+        "The space before the comma after 'quy trình đặt hàng' and the comma before 'và chăm sóc khách hàng' are removed",
+        "The greeting is no longer Title Case ('Chào cả nhóm')",
+        "The author's voice is kept: the email is edited, not rewritten from scratch, and still signed 'Lan'",
+        "A short summary of the changes is given"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "holiday-notice-admin",
+      "prompt": "Soạn nội dung thông báo (chỉ phần chữ, mình tự dàn trang) của Công ty Cổ phần Thực phẩm Sao Mai gửi toàn thể người lao động về lịch nghỉ Giỗ Tổ Hùng Vương năm 2027: nghỉ 1 ngày vào thứ Sáu ngày 16/4/2027 (tức 10/3 âm lịch), đi làm lại thứ Hai 19/4/2027; bộ phận sản xuất bố trí ca trực theo phân công của quản đốc; số thông báo 12/TB-SM, ngày ký 01/4/2027, Tổng giám đốc Phạm Quốc Huy ký.",
+      "expected_output": "Formal administrative register; Decree 30 capitalisation (Giỗ Tổ Hùng Vương, thứ Sáu, thứ Hai, Tổng giám đốc before the name); dates in the 'ngày 01 tháng 4 năm 2027' form with leading zeros; no 'bạn', no exclamation; facts exactly as given.",
+      "assertions": [
+        "Issue date written as 'ngày 01 tháng 4 năm 2027' (leading zero for day < 10)",
+        "Weekday names written as 'thứ Sáu' and 'thứ Hai' (lower-case 'thứ', capitalised day)",
+        "Holiday name capitalised as 'Giỗ Tổ Hùng Vương'",
+        "Formal register: no 'bạn', no exclamation marks, no emoji",
+        "All facts match the request (dates, lunar date, number 12/TB-SM, signer and title) with nothing invented that matters"
+      ]
+    }
+  ]
+}
