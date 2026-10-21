@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="480" height="480">
+  <!-- 24×24 icon grid. Live area 1–23 (1px padding). Keylines: circle Ø20, square 18,
+       portrait 16×20, landscape 20×16. Pick the keyline closest to the object's shape so
+       round and square icons look the same size. Delete this file's guides when drawing. -->
+  <rect width="24" height="24" fill="#fff"/>
+  <g stroke="#e5e7eb" stroke-width="0.04">
+    <path d="M1 0v24M2 0v24M3 0v24M4 0v24M5 0v24M6 0v24M7 0v24M8 0v24M9 0v24M10 0v24M11 0v24M12 0v24M13 0v24M14 0v24M15 0v24M16 0v24M17 0v24M18 0v24M19 0v24M20 0v24M21 0v24M22 0v24M23 0v24"/>
+    <path d="M0 1h24M0 2h24M0 3h24M0 4h24M0 5h24M0 6h24M0 7h24M0 8h24M0 9h24M0 10h24M0 11h24M0 12h24M0 13h24M0 14h24M0 15h24M0 16h24M0 17h24M0 18h24M0 19h24M0 20h24M0 21h24M0 22h24M0 23h24"/>
+  </g>
+  <rect x="1" y="1" width="22" height="22" fill="none" stroke="#f87171" stroke-width="0.06"/>
+  <g fill="none" stroke="#60a5fa" stroke-width="0.06">
+    <circle cx="12" cy="12" r="10"/>
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <rect x="4" y="2" width="16" height="20" rx="2"/>
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+  </g>
+  <path d="M12 0v24M0 12h24" stroke="#a78bfa" stroke-width="0.05"/>
+</svg>

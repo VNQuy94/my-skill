@@ -1,0 +1,68 @@
+{
+  "skill_name": "ui-craft",
+  "log": "commands",
+  "tools_note": "A React + TypeScript + Tailwind v4 project is already at outputs/app/ with dependencies installed (Vite; network is available if you need more npm packages). Build it with `npm run build` inside outputs/app. Chromium is at /usr/bin/chromium if you want to look at your result. Do not ask the user questions: make reasonable choices yourself and state them in notes.md. The evaluator screenshots the built app afterwards at 1440px and 390px.",
+  "rubric": [
+    "distinctiveness (fits this subject; would not fit a competitor unchanged)",
+    "visual cohesion (one system of color, type, shape, icons)",
+    "hierarchy and readability",
+    "mobile layout at 390px",
+    "craft (spacing, alignment, details)"
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "name": "bike-shop-landing",
+      "prompt": "Làm giúp mình landing page cho tiệm sửa và cho thuê xe đạp \"Xe Đạp Ông Tư\" ở Hội An, viết bằng React + Tailwind. Thông tin: thuê xe đạp thường 20.000 đ/giờ hoặc 80.000 đ/ngày; xe đạp điện 150.000 đ/ngày; sửa xe lấy liền, vá săm 15.000 đ, thay xích từ 60.000 đ. Mở cửa 6:30–21:00 mỗi ngày. Địa chỉ 45 Trần Phú, Minh An, Hội An. Đặt xe qua Zalo 0905 214 377. Khách chủ yếu là khách du lịch trong nước và nước ngoài, nhưng trang chỉ cần tiếng Việt. Mình muốn trang có chất riêng, đừng giống mấy trang template.",
+      "fixture": "",
+      "routes": ["/"],
+      "run_deliverable": "app/ (the project, built with npm run build)",
+      "deliverable": "shots",
+      "assertions": [
+        "checks.json: build is ok and no page has pageErrors",
+        "checks.json: no horizontalOverflow and no contrastFailures at either width",
+        "checks.json: at least one web font is loaded and vietnameseFallback is empty on every page (Vietnamese diacritics render in the chosen face)",
+        "checks.json: huesInUse has at most 3 entries on every page (color discipline)",
+        "checks.json: source.emojiCharacters is 0 and source.iconPackages has at most one entry",
+        "Screenshots show every supplied fact: the three rental prices, the two repair prices, opening hours 6:30–21:00, the address, and the Zalo number",
+        "Screenshots contain no invented facts presented as real: no testimonials, star ratings, customer counts, years in business, or extra prices that the request did not give"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pharmacy-stock-dashboard",
+      "prompt": "Mình cần màn hình dashboard tồn kho cho chuỗi 3 nhà thuốc (Hải Châu, Thanh Khê, Sơn Trà) bằng React + Tailwind, dữ liệu giả cũng được. Cần: (1) bảng thuốc sắp hết hạn trong 60 ngày (tên thuốc, lô, chi nhánh, hạn dùng, số lượng); (2) cảnh báo thuốc tồn dưới mức tối thiểu; (3) biểu đồ nhập/xuất 7 ngày gần nhất; (4) bộ lọc theo chi nhánh. Dược sĩ dùng trên máy tính ở quầy và đôi khi xem trên điện thoại. Nhìn chuyên nghiệp, dễ đọc, có bản sắc riêng chứ đừng kiểu dashboard admin mẫu.",
+      "fixture": "",
+      "routes": ["/"],
+      "run_deliverable": "app/ (the project, built with npm run build)",
+      "deliverable": "shots",
+      "assertions": [
+        "checks.json: build is ok and no page has pageErrors",
+        "checks.json: no horizontalOverflow at 390px (wide tables scroll inside their own container) and no contrastFailures",
+        "checks.json: at least one web font is loaded and vietnameseFallback is empty on every page",
+        "checks.json: huesInUse has at most 4 entries on every page (an accent plus status colors)",
+        "checks.json: source.emojiCharacters is 0 and source.iconPackages has at most one entry",
+        "Screenshots show all four requested parts: the expiring-soon table with lot, branch, expiry date and quantity; low-stock alerts; a 7-day in/out chart; a branch filter",
+        "Quantities and dates in the screenshots use Vietnamese formats (thousands with '.', e.g. 1.200; dates dd/mm/yyyy)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "library-history-page",
+      "prompt": "Trong project này (app Sổ Tay Đọc của thư viện phường), thêm giúp mình trang \"Lịch sử mượn\" ở đường dẫn /lich-su: liệt kê các lượt mượn trong src/data/loans.ts, mỗi lượt có tên sách, tác giả, ngày mượn, hạn trả, ngày trả (nếu có) và trạng thái; có bộ lọc theo trạng thái (tất cả / đang mượn / đã trả / quá hạn) và trạng thái rỗng khi lọc không có kết quả. Giữ đúng phong cách của trang hiện có.",
+      "fixture": "so-tay-doc",
+      "routes": ["/", "/lich-su"],
+      "run_deliverable": "app/ (the project, built with npm run build)",
+      "deliverable": "shots",
+      "assertions": [
+        "checks.json: build is ok and no page has pageErrors on / or /lich-su",
+        "Screenshots of /lich-su show the history page (not the home page) with all 7 loans, each with title, author, borrowed date, due date, returned date when present, and status",
+        "Screenshots of /lich-su show a status filter with the four options",
+        "checks.json: huesInUse on /lich-su stays within the existing palette — every hue within 25° of 230, 28 or 150",
+        "checks.json: fontsLoaded on /lich-su is the same set as on / and vietnameseFallback is empty",
+        "checks.json: no horizontalOverflow and no contrastFailures on /lich-su at either width",
+        "The /lich-su screenshots match the existing page's visual language: row-based list separated by rule lines rather than shadowed cards, outlined status marks like the home page, same header, same button style"
+      ]
+    }
+  ]
+}
