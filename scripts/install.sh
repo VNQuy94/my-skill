@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 # Install every skill in this repo on the current machine.
-#   1. Symlink skills into ~/.claude/skills (Claude Code) and, with --agents,
-#      also into ~/.agents/skills (agents that read the shared folder).
+#   1. Symlink skills into ~/.claude/skills (Claude Code) and
+#      ~/.agents/skills (agents that read the shared folder).
 #   2. Run each skill's own scripts/setup.sh, if it has one.
 # Safe to re-run. Usage: scripts/install.sh [--agents] [--no-setup]
 set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
-agents=0
 setup=1
 for arg in "$@"; do
   case "$arg" in
-    --agents) agents=1 ;;
+    --agents) : ;; # Kept for compatibility; both destinations are always installed.
     --no-setup) setup=0 ;;
     -h|--help) sed -n '2,7p' "$0"; exit 0 ;;
     *) echo "unknown option: $arg" >&2; exit 1 ;;
@@ -19,11 +18,9 @@ for arg in "$@"; do
 done
 
 echo "== Linking skills into ~/.claude/skills"
-"$root/scripts/link.sh"
-if (( agents )); then
-  echo "== Linking skills into ~/.agents/skills"
-  CLAUDE_SKILLS_DIR="$HOME/.agents/skills" "$root/scripts/link.sh"
-fi
+CLAUDE_SKILLS_DIR="$HOME/.claude/skills" "$root/scripts/link.sh"
+echo "== Linking skills into ~/.agents/skills"
+CLAUDE_SKILLS_DIR="$HOME/.agents/skills" "$root/scripts/link.sh"
 
 if (( setup )); then
   for s in "$root"/skills/*/scripts/setup.sh; do

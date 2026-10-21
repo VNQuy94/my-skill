@@ -88,11 +88,15 @@ This repo is the single source of truth. Skills are installed with **symlinks**,
 ```bash
 git clone <repo-url> ~/Documents/My-Skill
 cd ~/Documents/My-Skill
-scripts/install.sh            # link skills into ~/.claude/skills + run each skill's setup
-scripts/install.sh --agents   # same, and also link into ~/.agents/skills
+scripts/install.sh            # link into ~/.claude/skills and ~/.agents/skills + run setup
+scripts/install.sh --no-setup # link into both folders without running setup
 ```
 
 `install.sh` is safe to re-run. It never overwrites a real folder in the skills directory, only symlinks.
+
+You can run it from any directory using its absolute path, for example
+`~/Documents/My-Skill/scripts/install.sh`. Destinations always use your `$HOME`.
+The legacy `--agents` option is still accepted; both folders are now installed by default.
 
 **Requirements**
 
