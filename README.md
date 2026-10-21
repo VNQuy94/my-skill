@@ -8,7 +8,7 @@ Small, tested, version-controlled instructions that make an agent work the way I
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-skills-D97757?style=flat-square)
 ![Agent Skills](https://img.shields.io/badge/format-SKILL.md-4B5563?style=flat-square)
-![Skills](https://img.shields.io/badge/skills-2-2563EB?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-6-2563EB?style=flat-square)
 ![Shell](https://img.shields.io/badge/tooling-bash-16A34A?style=flat-square)
 
 [Skills](#-skills) · [Install](#-install-on-a-new-machine) · [Quick start](#-quick-start) · [Structure](#-repository-structure) · [Writing a skill](#-writing-a-skill) · [Testing](#-testing-skills)
@@ -29,6 +29,10 @@ This repo is the single source of truth. Skills are installed with **symlinks**,
 |---|---|---|
 | [`research`](skills/research/SKILL.md) | Research methodology. It covers choosing research depth, crafting search queries, judging sources, citing them, and deciding when to stop. | An answer depends on facts that may be stale, niche, or contested. Also for comparing tools, debugging an error message, making a recommendation, or learning a new domain. |
 | [`doc-style`](skills/doc-style/SKILL.md) | Consistent document layout for PDF (Typst) and DOCX (docx-js): one profile holds every font, size, spacing, and color role; helpers build tables, callouts, key figures, and figures; linters catch off-palette colors, direct formatting, and walls of text. Includes a Decree 30/2020 profile for Vietnamese administrative documents. | Creating or restyling a report, proposal, guide, or official notice as `.pdf` or `.docx`, or when a document looks messy or inconsistent. |
+| [`vi-writing`](skills/vi-writing/SKILL.md) | Natural, correct Vietnamese: capitalisation per Decree 30/2020 Appendix II, one spelling convention per document (kỉ/kỷ, hoà/hòa), Vietnamese number/date formats, punctuation, technical terms, and rewriting translationese. Includes a consistency linter. | Writing, translating, or proofreading Vietnamese documents, guides, notices, emails, or UI text. |
+| [`linux-desktop`](skills/linux-desktop/SKILL.md) | Safe operation of a CachyOS/Arch + COSMIC (Wayland) desktop: inspect first, plan with undo, hand root commands to the user, full upgrades and `.pacnew` merges, snapper/Limine snapshots, portals and remote desktop. | Installing, updating, configuring, or troubleshooting anything on the machine. |
+| [`ui-craft`](skills/ui-craft/SKILL.md) | Distinctive React + Tailwind interfaces instead of generic "AI slop": a design direction drawn from the subject, one `DESIGN.md` token file that Tailwind v4 enforces (default palette, text sizes, radii and shadows removed), an icon system (one library + a stroke/cap signature + the product's own icons on the same grid), Vietnamese-capable fonts, a specimen page for approval, linters, and browser checks with screenshots. | Building or restyling a landing page, app screen, dashboard, or component, choosing fonts, colors, or icons, or when a UI looks generic or inconsistent. |
+| [`skill-eval`](skills/skill-eval/SKILL.md) | Fair, blind evaluation of a skill: leakage check, ready-made run prompts, timing, blinding with page renders, grader prompts, unblinding, and a results report. | Testing whether a skill helps, or whether a new version beats the old one. |
 
 <details>
 <summary><b>Inside <code>research</code></b></summary>
@@ -62,6 +66,23 @@ This repo is the single source of truth. Skills are installed with **symlinks**,
 
 </details>
 
+<details>
+<summary><b>Inside <code>ui-craft</code></b></summary>
+
+| File | Purpose |
+|---|---|
+| `SKILL.md` | Workflow: classify → direction (2–3 cards, swap test) → DESIGN.md + tokens → specimen for approval → build → lint + screenshots → decision log |
+| `scripts/tokens.mjs` | `DESIGN.md` → Tailwind v4 `theme.css` (defaults reset) and `icon-config.ts`; contrast, color-budget, type, and font checks |
+| `scripts/fonts_vi.py` | Google Fonts families with Vietnamese support: filter, shuffle, check |
+| `scripts/specimen.mjs` | Type, color roles (light/dark), icon set with custom icons, components in every state → PNG |
+| `scripts/lint_ui.mjs`, `lint_icons.mjs` | Classes the theme does not define, raw values, icon and emoji rules, custom-icon geometry |
+| `scripts/shoot.mjs` | Screenshots at 1440/390 plus overflow, contrast, font-fallback, hue-count, and target checks |
+| `assets/` | `DESIGN.template.md`, `Icon.tsx` + registries for Lucide/Tabler/Phosphor, icon grid, Vite starter |
+| `references/` | Direction, dated defaults list, typography, color, layout and motion, icons, React/Tailwind wiring, quality floor |
+| `evals/` | Prompts, a fixture project, and the screenshot harness for blind grading |
+
+</details>
+
 ## 💻 Install on a new machine
 
 ```bash
@@ -81,8 +102,9 @@ scripts/install.sh --agents   # same, and also link into ~/.agents/skills
 | `doc-style` | `python3` (with `venv`), `node` + `npm`, poppler (`pdftoppm`, `pdffonts`) |
 | `doc-style`, recommended | fonts with Vietnamese glyphs: Inter, Noto Sans/Serif, Liberation Serif |
 | `doc-style`, optional | LibreOffice (`soffice`) to preview DOCX as images |
+| `ui-craft` | `node` ≥ 20 + `npm`, `python3`, Chromium (or `npx playwright install chromium`) |
 
-`doc-style` installs its Python and npm packages into `~/.cache/doc-style` without sudo. Check with `skills/doc-style/scripts/setup.sh --check`.
+`doc-style` installs its Python and npm packages into `~/.cache/doc-style` without sudo. Check with `skills/doc-style/scripts/setup.sh --check`. `ui-craft` does the same under `~/.cache/ui-craft` (`skills/ui-craft/scripts/setup.sh --check`).
 
 ## 🚀 Quick start
 
@@ -147,17 +169,22 @@ My-Skill/
 
 ## 🧪 Testing skills
 
-Skills are evaluated with the [skill-creator](https://github.com/anthropics/skills) workflow:
+Skills are evaluated with the repo's own [`skill-eval`](skills/skill-eval/SKILL.md) skill (a streamlined version of the [skill-creator](https://github.com/anthropics/skills) loop):
 
-1. Put realistic prompts and checkable assertions in `skills/<name>/evals/evals.json`.
-2. Run each prompt with the new skill, the previous version, and no skill.
-3. Grade blind, so the grader does not know which configuration produced which answer.
-4. Record the results in `evals/results-<date>.md`.
+```bash
+python3 skills/skill-eval/scripts/check_leakage.py skills/<name>          # eval topics must not appear in the skill
+python3 skills/skill-eval/scripts/init_run.py skills/<name> --iteration N # run prompts for with/without skill
+python3 skills/skill-eval/scripts/blind.py workspaces/<name>/iteration-N  # shuffle, render, grader prompts
+python3 skills/skill-eval/scripts/unblind.py workspaces/<name>/iteration-N
+python3 skills/skill-eval/scripts/report.py workspaces/<name>/iteration-N --record
+```
+
+Results are recorded in each skill's `evals/results-<date>.md`.
 
 > [!WARNING]
 > Keep the examples inside a skill **on different topics** from the eval prompts. If they overlap, the agent copies the example and the score no longer measures the method.
 
-Latest results for `research`: [`evals/results-2026-10-10.md`](skills/research/evals/results-2026-10-10.md).
+Latest results: [`research`](skills/research/evals/results-2026-10-10.md) · [`doc-style`](skills/doc-style/evals/results-2026-10-11.md) · [`vi-writing`](skills/vi-writing/evals/results-2026-10-11.md).
 
 ---
 

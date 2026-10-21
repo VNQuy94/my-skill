@@ -23,6 +23,7 @@ Repo này chứa các skill Claude Code cá nhân của người dùng. Người
 
 ## Khi kiểm thử skill
 
+- Dùng skill `skill-eval` (`skills/skill-eval/`): `check_leakage.py` → `init_run.py` → chạy các prompt trong `prompts/` cùng một lượt → `record_timing.py` → `blind.py` → chấm theo `prompts/grade--*.txt` → `unblind.py` → `report.py --record`. Danh sách bẫy đã gặp: `skills/skill-eval/references/pitfalls.md`.
 - Ví dụ minh họa trong skill **không được trùng chủ đề** với câu hỏi trong `evals/`. Nếu trùng, agent sẽ chép ví dụ và điểm số không còn đo được phương pháp (đã xảy ra với skill `research` ở lần chạy đầu).
 - Kết quả chạy để trong `workspaces/<ten-skill>/iteration-N/` (đã gitignore).
 - Khi giao việc cho subagent chạy thử, chỉ yêu cầu ghi query và URL đã mở. Nếu yêu cầu ghi lại cả suy nghĩ (plan, reflection), bộ lọc API có thể chặn với lý do `reasoning_extraction`.
