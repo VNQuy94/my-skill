@@ -59,6 +59,8 @@ Hard rules, because each one is a way consistency silently breaks:
 - **No blank paragraphs for spacing.** Spacing comes from the profile. (DOCX blocks end with a `BlockGap` paragraph; that is the only allowed empty paragraph.)
 - **Charts via `scripts/chart_theme.py`**, so fonts and colors come from `chart_palette`.
 - Headings: at most 3 levels, never skipped, always a heading style rather than a bold paragraph.
+- **Content fidelity.** Layout work must not change the content: do not add facts, categories, people, or deadlines the user did not give, and do not turn a limit into an entitlement ("tối đa 30 ngày" stays "tối đa"). If something is needed but unknown, mark it as a placeholder ("[thời hạn]") and mention it when delivering.
+- **Say it once.** A rule or number appears in one place; the summary may point to it, but do not repeat it in a stat, a list item, and a callout.
 
 ### 4. Build
 
@@ -85,7 +87,7 @@ Warnings (wall of text, fake headings, skipped heading levels, >30% bold, off-sc
 <skill>/scripts/render.sh <out_dir>/doc.pdf      # PNG per page in <out_dir>/preview/
 ```
 
-Open the PNGs and check: elements of the same kind look identical; no page is an unbroken block of text (except `nd30`); tables fit the width and numbers line up; headings are not stranded at the bottom of a page; charts are sharp and use the palette; Vietnamese diacritics render correctly.
+Open the PNGs and check: elements of the same kind look identical; a figure or table is not separated from its heading by a page break (shrink the figure, or move a paragraph); no page ends with a large empty gap; no page is an unbroken block of text (except `nd30`); tables fit the width and numbers line up; headings are not stranded at the bottom of a page; charts are sharp and use the palette; Vietnamese diacritics render correctly.
 DOCX preview needs LibreOffice (`soffice`). Without it, rely on `lint_docx.py` and say that the DOCX was not visually checked.
 
 ### 7. Deliver
